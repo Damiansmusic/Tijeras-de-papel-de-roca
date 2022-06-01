@@ -1,43 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors | Pablo Gonzalez</title>
-    <link rel="stylesheet" href="styles.css" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<link href="starter-template.css" rel="stylesheet">
+
+<title>Pablo González 6d93ec0e</title>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Rock Paper Scissors</h1>
+<div class="container">
+<h1>Please Log In</h1>
+<form method="POST">
+<label for="nam">User Name</label>
+<input type="text" name="who" id="nam"><br/>
+<label for="id_1723">Password</label>
+<input type="text" name="pass" id="id_1723"><br/>
+<input type="submit" value="Log In">
+<input type="submit" name="cancel" value="Cancel">
+</form>
+<p>
+For a password hint, view source and find a password hint
+in the HTML comments.
 
-        <div id="result">
-
-            <img id="machine-img" src="img/rock.svg">
-
-            <div id="start-text">
-                Choose an option
-            </div>
-
-            <img id="user-img" src="img/rock.svg">
-
-        </div>
-
-        <div id="group-btn">
-            <button id="rock" type="button">
-                <img src="img/rock.svg"/>
-            </button>
-            <button id="paper" type="button">
-                <img src="img/paper.svg"/>
-            </button>
-            <button id="scissors" type="button">
-                <img src="img/scissors.svg"/>
-            </button>
-        </div>
-
-
-
+</p>
+</div>
 </body>
-
-</html>
