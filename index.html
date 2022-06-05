@@ -1,142 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Pablo Gonzalez6d93ec0e</title>
-<style>
-        h1 {
-            margin: 1px solid black;
-	background-color: rgb(67, 113, 26);
-            text-align: center;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font: 10px;
-            position: relative;
-            top: 0px;
-            right: 10px; 
-        }
-	tbody { 
-		
-	background-color: rgb(67, 113, 26);
-	
-	
-	}
-	1 {
-	background-color: rgb(67, 113, 26);
-	}  </style>
+    <meta charset="UTF-8">
+    <title>Minu-Juego</title>
+
 </head>
- 
+
 <body>
-		<?php
-				if (isset($_POST["forma"]) and isset($_POST["forma2"])){
-				$forma=$_POST["forma"]; //jugador 1
-				$forma2=$_POST["forma2"]; //jugador 2
- 
-					if ($forma==$forma2){
-						echo "empate";
-					}else{
-						if($forma=="ti"){
-						//echo "es tijera";
-							if ($forma2=="pa"){
-								echo "gano jugador 1";
-							}else{
-								echo "gano jugador 2";
-							}
-						}else{
-							if ($forma=="pa"){
-							//echo "es papel";
-								if ($forma2=="pi"){
-									echo "gano el jugador 1";
-								}else{
-									echo "gano el jugador 2";
-								}
-							}else{
-								if ($forma=="pi"){
-									//echo "es piedra";
-									if ($forma2=="ti"){
-										echo "gano el jugador 1";
-									}else{
-										echo "gano el jugador 2";
-									}
-								}
-							}
-						}
- 
-					}
-				}
- 
-		//Juego piedra papel o tijeras.
+    <div id="colores"></div>
+    <a href="https://github.com/ulisescerv91/" target="_blank" id="titulo1">BY: Ulises_cervantes</a>
+    <center>
+        <p id="titulo2">Piedra - Papel-Tijeras-Lagarto-Spock</p>
+    </center>
+    <div id="menu"><span class="botones" id="jugar" type="button">jugar</span><span class="botones" id="ver_reglas">reglas</span></div>
 
-//Primera parte del juego, pide al usuario que elija entre piedra, papel o tijera.
-var decisionUsuario = prompt("¿Piedra, papel o tijera?");
+    <div id="opcionesdiv">
+        <center>
+            <p id="elige">Selecciona una opcion:</p>
+        </center>
+        <center><img src="pictures/reglas.PNG" id="img_reglas"><br></center>
+        <img id="piedra" class="opciones" onclick="jugar(0)" src="pictures/Piedra.PNG" title="Piedra">
+        <img id="papel" class="opciones" onclick="jugar(1)" src="pictures/Papel.PNG" title="Papel">
+        <img id="tijeras" class="opciones" onclick="jugar(2)" src="pictures/Tijeras.PNG" title="tijera">
+        <img id="lagarto" class="opciones" onclick="jugar(3)" src="pictures/Lagarto.PNG" title="lagarto">
+        <img id="spock" class="opciones" onclick="jugar(4)" src="pictures/Spock.PNG" title="Spock">
+        <label id="l_piedra" class="etiquetas">piedra</label>
+        <label id="l_papel" class="etiquetas">papel</label>
+        <label id="l_tijeras" class="etiquetas">tijeras</label>
+        <label id="l_lagarto" class="etiquetas">lagarto</label>
+        <label id="l_spock" class="etiquetas">spock</label>
 
-//Segunda parte del juego. El ordenador "decide" su elección de forma aleatoria.
-var aleatorio = function() {
-    var numero =  Math.floor((Math.random()*3)+1); 
-    var respuesta;
-    if (numero == 1) {
-        respuesta = "Piedra";
-    } else if (numero == 2) {
-        respuesta = "Papel";
-    } else {
-        respuesta = "Tijera";
-    }
-    return respuesta;
-};
+    </div>
+    <div id="divreglas">
+        <center>
+            <p id="sheldon">Reglas segun Sheldon Cooper</p>
+        </center>
+        <center><iframe id="video" width="560" height="315" src="//www.youtube.com/embed/S5eLybE03gc" frameborder="0" allowfullscreen></iframe></center>
+    </div>
+    <div id="vs">
+        <center><span id="tu">Tu</span><span id="pc">Sheldon</span></center>
+        <center><img src="pictures/vs.png" id="vs_img"></center>
+        <img class="resul" id="opc_user" src="">
+        <img class="resul" id="opc_pc" src="">
+        <img src="" id="img_sheldon"><br>
+        <span id="again">JUGAR DE NUEVO!!</span>
+    </div>
+    <p id="resultado"></p>
 
-var decisionOrdenador = aleatorio();
-console.log ("Usuario: " +decisionUsuario + ", Ordenador: " +decisionOrdenador);
 
-logicaJuego(decisionUsuario, decisionOrdenador);
+</body>
 
-//Tercera parte del juego. Se decide quién es el ganador
-var logicaJuego = function(decisionUsuario, decisionOrdenador) {
-    if (decisionUsuario == decisionOrdenador) {
-        return console.log("Empate, los dos eligieron " +decisionUsuario);
-    } else {
-        if (decisionUsuario == "Piedra" && decisionOrdenador == "Papel") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
-        } 
-        if (decisionUsuario == "Piedra" && decisionOrdenador == "Tijera") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
-        } 
-        if (decisionUsuario == "Papel" && decisionOrdenador == "Tijera") { 
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
-         }
-         if (decisionUsuario == "Papel" && decisionOrdenador == "Piedra"){
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
-        }
-         if (decisionUsuario == "Tijera" && decisionOrdenador == "Piedra") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
-            }
-         if (decisionUsuario == "Tijera" && decisionOrdenador == "Papel") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
-        }
-    }
-};?>
- <h1>Rock Paper Scissors</h1>
-    <form method="post">
-        <table style="text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="1" cellspacing="1">
-            <tbody>
-                <tr>
-                    <td>
-                        <label for="jugada_del_usuario">Selecciona el valor de jugada del usuario:</label>
-                    </td>
-                    <td>
-                        <select name="jugada_del_usuario" required="required">
-                                <option value="1">Piedra</option>
-                                <option value="2">Papel</option>
-                                <option value="3">Tijera</option>
-                            </select>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td colspan="2" rowspan="1">
-                        <input value="Procesar" type="submit" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-	</body>
 </html>
-	
