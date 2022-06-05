@@ -10,28 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<?php
 
-if ($_SERVER['REQUEST_METHOD']=='POST')
-{
-$jugada_del_usuario = intval ($_POST['jugada_del_usuario']);
-$jugada_del_ordenador=1+rand()%3;
-if($jugada_del_ordenador==1)
-echo 'La jugada del ordenador es Piedra<br>'
-if($jugada_del_ordenador==2)
-echo 'La jugada del ordenador es Papel<br>'
-if( $jugada_del_ordenador==3)
-echo 'La jugada del ordenador es Tijera<br>'
-if($jugada_del_usuario==$jugada_del_ordenador)
-echo 'Empate<br>'
-if(($jugada_del_usuario == 1&&$jugada_del_ordenador ==3)|| ($jugada_del_usuario==2&&$jugada_del_ordenador==1)|| ($jugada_del_usuario==3&&$jugada_del_ordenador==2))
-echo 'Gana usuario<br>'
-if(($jugada_del_usuario==3&&$jugada_del_ ordenador==1)|| ($jugada_del_usuario==1&&$jugada_del_ordenador==2)|| ($jugada_del_usuario==2&&$jugada_del_ordenador==3))
-echo 'Gana ordenador<br>'
-echo 'Valor de jugada del ordenador: ' . $jugada_del_ordenador . "<br/> \n";
-}
- 
-?>
         <form method="post">
 <table style="text-align: left; margen izquierdo: automático; margen derecho: automático;" border="1" cellpadding="1" cellspacing="1">
 <tbody>
