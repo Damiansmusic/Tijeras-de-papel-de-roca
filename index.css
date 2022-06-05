@@ -1,63 +1,61 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+body{
+    background: #4e54c8;
 }
 
-footer {
-    text-align: center;
+header{
     padding: 10px;
+    color: #fff;
 }
 
-footer a {
-    color: black;
-    text-decoration: none;
-}
-
-button {
-    background-color: #ffe97d;
-    border: 4px solid black;
-    margin: 5px;
-}
-
-.container {
-    max-width: 420px;
-    height: 100vh;
-    max-height: 745px;
-    margin: 0 auto;
-    background-color: #ffb74d;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 5px solid black;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-}
-
-h1 {
-    font-size: 35px;
+.resultado{
     text-align: center;
-    padding: 20px;
+    font-size: 25px;
+    color: #fff;
 }
 
-#result {
+.opciones{
     text-align: center;
+    margin: 50px 0;
 }
 
-#result img {
-    width: 40%;
+.opcion{
+    width: 80px;
+    display: inline-block;
+    padding: 15px;
+    margin: 20px;
 }
 
-#start-text {
-    font-size: 36px;
-    padding: 20px;
+.opcion:hover{
+    background-color: rgb(20, 210, 235);
+    cursor: pointer;
+    border-radius: 50%;
 }
 
-#group-btn {
-    display: flex;
-    width: 100%;
+.ganador{
+    color: rgb(55, 235, 11);
+    font-size: 25px;
 }
 
-#group-btn>button>img {
-    width: 100%;
+.perdedor{
+    color: rgb(241, 12, 12);
+    font-size: 25px;
+
 }
+
+.empate{
+    color:rgb(20, 210, 235);
+    font-size: 25px;
+    
+}
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
