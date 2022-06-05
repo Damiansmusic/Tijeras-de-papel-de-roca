@@ -1,16 +1,59 @@
+
 <!DOCTYPE html>
+
+
 <html lang="en">
 
-<head><title>Pablo Damián González Barreto 6d93ec0e</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"><!-- Custom styles for this template --><link href="starter-template.css" rel="stylesheet"></head><body>
-<div class="container">
-<h1>Rock Paper Scissors</h1>
-<p>Welcome: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb8e968892bb8e96929893d59e9f8e">[email protected]</a></p>
-<form method="post">
-<select name="human"><option value="-1">Select</option><option value="0">Rock</option><option value="1">Paper</option><option value="2">Scissors</option><option value="3">Test</option></select><input type="submit" value="Play"><input type="submit" name="logout" value="Logout"></form>
+<head>
+    <title>6d93ec0e</title>
+    <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<?php
 
-<pre>Your Play=Paper Computer Play=Scissors Result=You Lose
-</pre>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+if ($_SERVER['REQUEST_METHOD']=='POST')
+{
+$jugada_del_usuario = intval ($_POST['jugada_del_usuario']);
+$jugada_del_ordenador=1+rand()%3;
+if($jugada_del_ordenador==1)
+echo 'La jugada del ordenador es Piedra<br>'
+if($jugada_del_ordenador==2)
+echo 'La jugada del ordenador es Papel<br>'
+if( $jugada_del_ordenador==3)
+echo 'La jugada del ordenador es Tijera<br>'
+if($jugada_del_usuario==$jugada_del_ordenador)
+echo 'Empate<br>'
+if(($jugada_del_usuario == 1&&$jugada_del_ordenador ==3)|| ($jugada_del_usuario==2&&$jugada_del_ordenador==1)|| ($jugada_del_usuario==3&&$jugada_del_ordenador==2))
+echo 'Gana usuario<br>'
+if(($jugada_del_usuario==3&&$jugada_del_ ordenador==1)|| ($jugada_del_usuario==1&&$jugada_del_ordenador==2)|| ($jugada_del_usuario==2&&$jugada_del_ordenador==3))
+echo 'Gana ordenador<br>'
+echo 'Valor de jugada del ordenador: ' . $jugada_del_ordenador . "<br/> \n";
+}
+ 
+?>
+        <form method="post">
+<table style="text-align: left; margen izquierdo: automático; margen derecho: automático;" border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<label for="jugada_del_usuario">Selecciona el valor de jugada del usuario:</label
+> </td>
+<td>
+<seleccione nombre="jugada_del_usuario" requerido="> <
+option value="1">Piedra</option>
+<option value="2">Papel</option>
+<option value="3">Tijera</option>
+</select>
+</td>
+</tr>
+<tr align= "center">
+<td colspan="2" rowspan="1">
+<input value="Procesar" type="submit" />
+</td>
+</tr>
+</tbody
+> </tabla>
+</forma>
+</cuerpo>
+</html>
