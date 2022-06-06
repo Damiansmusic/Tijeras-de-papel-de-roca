@@ -38,7 +38,8 @@
         <input type="submit" value="Verificar Ganador">
         <p></p>
     </form>
-    <?php 
+   <form>
+       <?php 
         if($_POST){
             $j1 = $_POST["j1"];
             $j2 = $_POST["j2"]; 
@@ -75,6 +76,7 @@
                 }
             }
             ?>
+        </form>
             <a href="netlify.app">  Reiniciar Juego</a>
             <?php
         }
