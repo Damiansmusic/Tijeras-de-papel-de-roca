@@ -1,174 +1,144 @@
 
-  <!DOCTYPE html>
+<!doctype html>
 <html>
+
 <head>
-   <meta charset="UTF-8">
-    <title>'6d93ec0e'</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      background: rgb(14, 30, 37);
-      color: white;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 24px;
-    }
-
-    .main {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    .card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      width: 75%;
-      max-width: 364px;
-      padding: 24px;
-      background: white;
-      color: rgb(14, 30, 37);
-      border-radius: 8px;
-      box-shadow: 0 2px 4px 0 rgba(14, 30, 37, .16);
-    }
-
-    a {
-      margin: 0;
-      text-decoration: none;
-      font-weight: 600;
-      line-height: 24px;
-      color: #007067;
-    }
-
-    a svg {
-      position: relative;
-      top: 2px;
-    }
-
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-      text-decoration-color: #f4bb00;
-    }
-
-    a:hover svg path{
-      fill: #007067;
-    }
-
-    p:last-of-type {
-      margin-bottom: 0;
-    }
-
+    <meta charset="UTF-8">
+    <title>Pablo Gonzalez6d93ec0e</title>
+    <style>
+        h1 {
+            margin: 1px solid black;
+            background-color: rgb(67, 113, 26);
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font: 10px;
+            position: relative;
+            top: 0px;
+            right: 10px;
+        }
+        
+        tbody {
+            background-color: rgb(67, 113, 26);
+        }
+        
+        #1 {
+            background-color: rgb(113, 26, 83);
+        }
     </style>
-
 </head>
+
 <body>
-<div class="container">
-<h1>Welcome to Broken Rock Paper Scissors</h1>
-<p><strong>Note:</strong> This sample code is only
-partially done and serves only as a starting point for the assignment.
-</p>
-  <h2>Pablo Gonzalez</h2>
-  <p>
-<a href="login.php">Please Log In</a>
-</p>
-<p>
-Attempt to go to 
-<a href="game.php">game.php</a> without logging in - it should fail with an error message.
-<p>
-<a href="https://www.wa4e.com/code/rps.zip" target="_blank">Source Code for this Application</a>
-</p>
-    </div>
+    <?php
+				if (isset($_POST["forma"]) and isset($_POST["forma2"])){
+				$forma=$_POST["forma"]; //jugador 1
+				$forma2=$_POST["forma2"]; //jugador 2
+ 
+					if ($forma==$forma2){
+						echo "empate";
+					}else{
+						if($forma=="ti"){
+						//echo "es tijera";
+							if ($forma2=="pa"){
+								echo "gano jugador 1";
+							}else{
+								echo "gano jugador 2";
+							}
+						}else{
+							if ($forma=="pa"){
+							//echo "es papel";
+								if ($forma2=="pi"){
+									echo "gano el jugador 1";
+								}else{
+									echo "gano el jugador 2";
+								}
+							}else{
+								if ($forma=="pi"){
+									//echo "es piedra";
+									if ($forma2=="ti"){
+										echo "gano el jugador 1";
+									}else{
+										echo "gano el jugador 2";
+									}
+								}
+							}
+						}
+ 
+					}
+				}
+ 
+		//Juego piedra papel o tijeras.
 
+//Primera parte del juego, pide al usuario que elija entre piedra, papel o tijera.
+var decisionUsuario = prompt("¿Piedra, papel o tijera?");
 
-    </form>
-    <?php 
-        if($_POST){
-            $j1 = $_POST["j1"];
-            $j2 = $_POST["j2"]; 
-            if($j1=="pi" && $j2=="ti"){
-                Ganador1();
-                ?><b>El Jugador 1 Gana! [Piedra gana a Tijera]</b><?php
-             } else{
-                if($j1=="pa" && $j2=="pi"){
-                    Ganador1();
-                    ?><b>El Jugador 1 Gana! [Papel gana a Piedra]</b><?php
-                }else{
-                    if($j1=="ti" && $j2=="pa"){
-                        Ganador1();
-                        ?><b>El Jugador 1 Gana [Tijeras gana a Papel]</b><?php
-                    }else{
-                        if($j2=="pi" && $j1=="ti"){
-                            Ganador2()
-                            ?><b>El Jugador 2 Gana! [Piedra gana a Tijera]</b><?php
-                        }else{
-                            if($j2=="pa"&& $j1=="pi"){
-                                Ganador2();
-                                ?><b>El Jugador 2 Gana! [Papel gana a Piedra]</b><?php
-                            }else{
-                                if($j2=="ti" && $j1=="pa"){
-                                    Ganador2();
-                                    ?><b>El Jugador 2 Gana [Tijeras gana a Papel]</b><?php
-                                }else{
-                                    Empate();
-                                    ?><b>Ninguno Gana!: Empate! =(</b><?php
-                                }
-                            }
-                        }
-                    }
-                }
+//Segunda parte del juego. El ordenador "decide" su elección de forma aleatoria.
+var aleatorio = function() {
+    var numero =  Math.floor((Math.random()*3)+1); 
+    var respuesta;
+    if (numero == 1) {
+        respuesta = "Piedra";
+    } else if (numero == 2) {
+        respuesta = "Papel";
+    } else {
+        respuesta = "Tijera";
+    }
+    return respuesta;
+};
+
+var decisionOrdenador = aleatorio();
+console.log ("Usuario: " +decisionUsuario + ", Ordenador: " +decisionOrdenador);
+
+logicaJuego(decisionUsuario, decisionOrdenador);
+
+//Tercera parte del juego. Se decide quién es el ganador
+var logicaJuego = function(decisionUsuario, decisionOrdenador) {
+    if (decisionUsuario == decisionOrdenador) {
+        return console.log("Empate, los dos eligieron " +decisionUsuario);
+    } else {
+        if (decisionUsuario == "Piedra" && decisionOrdenador == "Papel") {
+            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
+        } 
+        if (decisionUsuario == "Piedra" && decisionOrdenador == "Tijera") {
+            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
+        } 
+        if (decisionUsuario == "Papel" && decisionOrdenador == "Tijera") { 
+            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
+         }
+         if (decisionUsuario == "Papel" && decisionOrdenador == "Piedra"){
+            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
+        }
+         if (decisionUsuario == "Tijera" && decisionOrdenador == "Piedra") {
+            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
             }
-           
-            <a href="reparar.php">  Reiniciar Juego</a>
-            <?php
+         if (decisionUsuario == "Tijera" && decisionOrdenador == "Papel") {
+            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
         }
-        function Ganador1(){
-            ?><img src="https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png" width="40" height="40"><?php
-        }
-        function Ganador2(){
-            ?><img src="https://cdn0.iconfinder.com/data/icons/people-137/513/student-512.png" width="40" height="40"><?php
-        }
-        function Empate(){
-            ?><img src="https://cdn1.iconfinder.com/data/icons/unicons-line-vol-3/24/equal-circle-256.png" width="30" height="30"><?php
-        }
-    ?>
-      </div>
-
-    <div class="main">
-      <div class="card">
-        <div class="header">
-          <h1>Page Not Found</h1>
-        </div>
-        <div class="body">
-          <p>Looks like you've followed a broken link or entered a URL that doesn't exist on this site.</p>
-          <p>
-            <a id="back-link" href="/">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16"><path fill="#007067" d="M11.9998836,4.09370803 L8.55809517,7.43294953 C8.23531459,7.74611298 8.23531459,8.25388736 8.55809517,8.56693769 L12,11.9062921 L9.84187871,14 L4.24208544,8.56693751 C3.91930485,8.25388719 3.91930485,7.74611281 4.24208544,7.43294936 L9.84199531,2 L11.9998836,4.09370803 Z"></path></svg>
-              Back to our site
-             </a>
-          </p>
-          <hr><p>If this is your site, and you weren't expecting a 404 for this path, please visit Netlify's <a href="https://answers.netlify.com/t/support-guide-i-ve-deployed-my-site-but-i-still-see-page-not-found/125?utm_source=404page&utm_campaign=community_tracking">"page not found" support guide</a> for troubleshooting tips.
-          </p>
-        </div>
-      </div>
-    </div>
-    <script>
-      (function() {
-        if (document.referrer && document.location.host && document.referrer.match(new RegExp("^https?://" + document.location.host))) {
-          document.getElementById("back-link").setAttribute("href", document.referrer);
-        }
-      })();
-    </script>
+    }
+};?>
+        <h1>Rock Paper Scissors</h1>
+        <form method="post">
+            <table style="text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="1" cellspacing="1">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="jugada_del_usuario">Selecciona el valor de jugada del usuario:</label>
+                        </td>
+                        <td>
+                            <select name="jugada_del_usuario" required="required">
+                                <option value="1">Piedra</option>
+                                <option value="2">Papel</option>
+                                <option value="3">Tijera</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td colspan="2" rowspan="1">
+                            <input value="Procesar" type="submit" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
 </body>
+
 </html>
