@@ -1,144 +1,94 @@
 
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pablo Gonzalez6d93ec0e</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repara este script</title>
     <style>
-        h1 {
-            margin: 1px solid black;
-            background-color: rgb(67, 113, 26);
-            text-align: center;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font: 10px;
-            position: relative;
-            top: 0px;
-            right: 10px;
-        }
-        
-        tbody {
-            background-color: rgb(67, 113, 26);
-        }
-        
-        #1 {
-            background-color: rgb(113, 26, 83);
+        .contenedor{
+            width: 500px;
+           position: absolute;
+           left: 50%;
+           margin-left: -250px;
         }
     </style>
 </head>
-
 <body>
-    <?php
-				if (isset($_POST["forma"]) and isset($_POST["forma2"])){
-				$forma=$_POST["forma"]; //jugador 1
-				$forma2=$_POST["forma2"]; //jugador 2
- 
-					if ($forma==$forma2){
-						echo "empate";
-					}else{
-						if($forma=="ti"){
-						//echo "es tijera";
-							if ($forma2=="pa"){
-								echo "gano jugador 1";
-							}else{
-								echo "gano jugador 2";
-							}
-						}else{
-							if ($forma=="pa"){
-							//echo "es papel";
-								if ($forma2=="pi"){
-									echo "gano el jugador 1";
-								}else{
-									echo "gano el jugador 2";
-								}
-							}else{
-								if ($forma=="pi"){
-									//echo "es piedra";
-									if ($forma2=="ti"){
-										echo "gano el jugador 1";
-									}else{
-										echo "gano el jugador 2";
-									}
-								}
-							}
-						}
- 
-					}
-				}
- 
-		//Juego piedra papel o tijeras.
-
-//Primera parte del juego, pide al usuario que elija entre piedra, papel o tijera.
-var decisionUsuario = prompt("¿Piedra, papel o tijera?");
-
-//Segunda parte del juego. El ordenador "decide" su elección de forma aleatoria.
-var aleatorio = function() {
-    var numero =  Math.floor((Math.random()*3)+1); 
-    var respuesta;
-    if (numero == 1) {
-        respuesta = "Piedra";
-    } else if (numero == 2) {
-        respuesta = "Papel";
-    } else {
-        respuesta = "Tijera";
-    }
-    return respuesta;
-};
-
-var decisionOrdenador = aleatorio();
-console.log ("Usuario: " +decisionUsuario + ", Ordenador: " +decisionOrdenador);
-
-logicaJuego(decisionUsuario, decisionOrdenador);
-
-//Tercera parte del juego. Se decide quién es el ganador
-var logicaJuego = function(decisionUsuario, decisionOrdenador) {
-    if (decisionUsuario == decisionOrdenador) {
-        return console.log("Empate, los dos eligieron " +decisionUsuario);
-    } else {
-        if (decisionUsuario == "Piedra" && decisionOrdenador == "Papel") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
-        } 
-        if (decisionUsuario == "Piedra" && decisionOrdenador == "Tijera") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
-        } 
-        if (decisionUsuario == "Papel" && decisionOrdenador == "Tijera") { 
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
-         }
-         if (decisionUsuario == "Papel" && decisionOrdenador == "Piedra"){
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
-        }
-         if (decisionUsuario == "Tijera" && decisionOrdenador == "Piedra") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el ordenador.");
+    <div class="contenedor">
+    <h1>Juego Piedra, Papel o Tijera</h1>
+    <img src="https://miro.medium.com/max/1400/1*yHZKuUPofUf39CpZ6frmxw.png" width="310" height="130" alt="Piedra, Papel o Tijeras">
+    <h2>Forma de juego:</h2>
+    <p>Esquema de «piedra, papel o tijera». Cada elemento vence a uno de los otros dos, y a su vez es vencido por uno de ellos.</p>
+    <form action="reparar.php"method="POST">
+        <label for="j1">Jugador 1:</label>
+        <select name="j1">
+            <option value="pi">Piedra</option>
+            <option value="pa">Papel</option>
+            <option value="ti">Tijeras</option>
+        </select>
+        <p></p>
+        <label for="j2">Jugador 2:</label>
+        <select name="j2">
+            <option value="pi">Piedra</option>
+            <option value="pa">Papel</option>
+            <option value="ti">Tijeras</option>
+        </select>
+        <p></p>
+        <input type="submit" value="Verificar Ganador">
+        <p></p>
+    </form>
+    <?php 
+        if($_POST){
+            $j1 = $_POST["j1"];
+            $j2 = $_POST["j2"]; 
+            if($j1=="pi" && $j2=="ti"){
+                Ganador1();
+                ?><b>El Jugador 1 Gana! [Piedra gana a Tijera]</b><?php
+             } else{
+                if($j1=="pa" && $j2=="pi"){
+                    Ganador1();
+                    ?><b>El Jugador 1 Gana! [Papel gana a Piedra]</b><?php
+                }else{
+                    if($j1=="ti" && $j2=="pa"){
+                        Ganador1();
+                        ?><b>El Jugador 1 Gana [Tijeras gana a Papel]</b><?php
+                    }else{
+                        if($j2=="pi" && $j1=="ti"){
+                            Ganador2()
+                            ?><b>El Jugador 2 Gana! [Piedra gana a Tijera]</b><?php
+                        }else{
+                            if($j2=="pa"&& $j1=="pi"){
+                                Ganador2();
+                                ?><b>El Jugador 2 Gana! [Papel gana a Piedra]</b><?php
+                            }else{
+                                if($j2=="ti" && $j1=="pa"){
+                                    Ganador2();
+                                    ?><b>El Jugador 2 Gana [Tijeras gana a Papel]</b><?php
+                                }else{
+                                    Empate();
+                                    ?><b>Ninguno Gana!: Empate! =(</b><?php
+                                }
+                            }
+                        }
+                    }
+                }
             }
-         if (decisionUsuario == "Tijera" && decisionOrdenador == "Papel") {
-            console.log(""+decisionUsuario +" vs " +decisionOrdenador + ", gana el usuario");
+            ?>
+            <a href="reparar.php">  Reiniciar Juego</a>
+            <?php
         }
-    }
-};?>
-        <h1>Rock Paper Scissors</h1>
-        <form method="post">
-            <table style="text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="1" cellspacing="1">
-                <tbody>
-                    <tr>
-                        <td>
-                            <label for="jugada_del_usuario">Selecciona el valor de jugada del usuario:</label>
-                        </td>
-                        <td>
-                            <select name="jugada_del_usuario" required="required">
-                                <option value="1">Piedra</option>
-                                <option value="2">Papel</option>
-                                <option value="3">Tijera</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr align="center">
-                        <td colspan="2" rowspan="1">
-                            <input value="Procesar" type="submit" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+        function Ganador1(){
+            ?><img src="https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png" width="40" height="40"><?php
+        }
+        function Ganador2(){
+            ?><img src="https://cdn0.iconfinder.com/data/icons/people-137/513/student-512.png" width="40" height="40"><?php
+        }
+        function Empate(){
+            ?><img src="https://cdn1.iconfinder.com/data/icons/unicons-line-vol-3/24/equal-circle-256.png" width="30" height="30"><?php
+        }
+    ?>
+      </div>
 </body>
-
 </html>
